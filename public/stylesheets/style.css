@@ -1,0 +1,168 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+  v2.0 | 20110126
+  License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* End of the reset */
+
+:root{
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+html{
+  width: 100vw;
+  height: 100vh;
+}
+
+header {
+  position: relative;
+  padding: 50px;
+  background-color: black;
+  /* margin-bottom: 20px; */
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 50px), 0 100%);
+}
+
+/* header::after{
+  content: ' ';
+  position: absolute;
+  background-color: black;
+  background-image: linear-gradient(177deg, black 180px, white 181px);
+  background-repeat: no-repeat;
+  bottom: -55px;
+  left: 0;
+  right: 0;
+  height: 55px;
+
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}*/
+
+h1{
+  color: white;
+  font-size: 2.4rem;
+}
+
+a {
+  color: #00B7FF;
+}
+
+main{
+  padding: 20px;
+  margin-top: 30px;
+}
+
+form{
+  border: 1px solid gray;
+  border-radius: 15px;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input[type='file']::file-selector-button{
+  display: none;
+}
+
+input[type='file']{
+  color: gray;
+  font-style: italic;
+}
+
+input[type="submit"]{
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: 0;
+  width: fit-content;
+
+  transition-duration: .2s;
+  transition-property: background-color color padding;
+  transition-timing-function: ease-in;
+}
+
+input[type="submit"]:hover{
+  background-color: rgb(177, 177, 177);
+  color: black;
+  padding: 10px 25px;
+}
+
+.file__input{
+  display: flex;
+  gap: 5px;
+  width: max-content;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  padding: 10px 15px;
+
+  transition-duration: .2s;
+  transition-property: background-color color padding;
+  transition-timing-function: ease-in;
+}
+
+.file__input:hover{
+  background-color: rgb(177, 177, 177);
+  color: black;
+  padding: 10px 25px;
+}
+
+.file__input__icon--close{
+  fill: white;
+}
+.file__input__icon--open{
+  fill: white;
+  opacity: 0;
+}
+
+.file__input:hover .file__input__icon .file__input__icon--close{
+  opacity: 0;
+}
+.file__input:hover .file__input__icon .file__input__icon--open{
+  opacity: 1;
+}
