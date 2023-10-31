@@ -16,9 +16,10 @@ router.post('/', function(req, res, next) {
 
 router.post('/', (req, res, next)=>{
   let file = req.files.file;
-  cppZipper(path.join(__dirname, '..', 'files'), file.data)
-    .then(projectName=>{
-      req.projectName = projectName;
+  cppZipper(file.data)
+    .then(project=>{
+      req.projectName = project.proyecto;
+      req.buffer = project.buffer;
       next();
     })
     .catch((err)=>{
@@ -28,18 +29,27 @@ router.post('/', (req, res, next)=>{
 });
 
 router.post('/', (req, res)=>{
-  const zipName = `${req.projectName}.zip`;
-  const zipPath = path.join(__dirname, '..', 'files', zipName);
-  console.log(`"${zipPath}"`)
-  res.download(zipPath, zipName, (err)=>{
-    if(err){
-      console.log(`No se pudo encontrar el archivo ${zipName}`.red)
-      res.status(500).end();
-    }else{
-      console.log(`Se envió el archivo ${zipName}`.green)
-      res.status(204).end();
-    }
+  // const zipName = `${req.projectName}.zip`;
+  // const zipPath = path.join(__dirname, '..', 'files', zipName);
+  // console.log(`"${zipPath}"`)
+  // res.download(zipPath, zipName, (err)=>{
+  //   if(err){
+  //     console.log(`No se pudo encontrar el archivo ${zipName}`.red)
+  //     res.status(500).end();
+  //   }else{
+  //     console.log(`Se envió el archivo ${zipName}`.green)
+  //     res.status(204).end();
+  //   }
+  // })
+
+  const fileName = `${req.projectName}.zip`
+  const fileType = 'application/zip'
+
+  res.writeHead(200, {
+      'Content-Disposition': `attachment; filename="${fileName}"`,
+      'Content-Type': fileType,
   })
+  res.end(req.buffer)
 })
 
 module.exports = router;
